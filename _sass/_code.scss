@@ -6,6 +6,8 @@
 code,
 pre {
   font-family: $code-font-family;
+  width: 50rem;
+  overflow-x: scroll;
 }
 
 code {
