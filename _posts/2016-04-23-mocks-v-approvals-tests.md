@@ -7,7 +7,7 @@ Aka: Test Driven Design v Test Driven Development
 
 # Context
 
-I’ve been TDDing some Kotlin code to index data from a web service into Elastic Search. All the pieces are in place, they just need to be wired together and invoked.
+In my current gig at [Springer Nature](http://springernature.com) (we're hiring :-) I’ve been TDDing some Kotlin code to index data from a web service into Elastic Search. All the pieces are in place, they just need to be wired together and invoked.
 
 The components pieces are Journals
 
@@ -35,7 +35,7 @@ Whether this is T.D.Development or T.D.Design, I should write a test first. We p
 
 # Approvals Testing
 
-What we do have is an HttpFetcher abstraction that allows us to replay previous responses and an Approvals Testing library. We can use the former to use our actual implementation of Journals, and the latter to lock down the progress reporting and indexed data. The test takes quite a bit of setup, but the first time we run it we will hit the real data and can approve the results from processing it.
+What we *do* have is an HttpFetcher abstraction that allows us to replay previous responses and an Approvals Testing library. We can use the former to use our actual implementation of Journals, and the latter to lock down the progress reporting and indexed data. The test takes quite a bit of setup, but the first time we run it we will hit the real data and can approve the results from processing it.
 
 ```
 class IndexRefresherApprovalsTest {
