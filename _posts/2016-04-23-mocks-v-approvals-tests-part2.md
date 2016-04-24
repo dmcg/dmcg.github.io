@@ -11,6 +11,38 @@ In [Part 1](/2016/04/23/mocks-v-approvals-tests-part1/) we looked at testing an 
 
 In this Part 2, we'll start again using JMock, and see what happens.
 
+## Quick Recap
+
+The components pieces are Journals
+
+```
+class Journals(...) {
+   fun loadActiveIds(): List<String> {...}
+   fun loadJournalWithArticles(id: String, articleCount: Int): Journal? {...}
+}
+```
+
+and the JournalIndexer
+
+```
+class JournalIndexer(...) {
+   fun createIndex() {...}
+   fun index(journal: JournalJson) {...}
+}
+```
+
+The final step is to:
+
+1. create the index
+2. load the active ids
+3. remove some that are excluded
+4. pass the remainder to loadJournalWithArticles
+5. then pass the returned Journals to the JournalIndexer.index().
+
+And we should survive exceptions, and loadJournalWithArticles may return null (no such journal), but the indexer can’t index null. And it would be nice to keep track of how far we’ve got, and what worked and what didn’t.
+
+We're writing a class called IndexRefresher.
+
 # Mocking
 
 Pulling in JMock wasn’t too painful, but my pair and I did argue quite a bit more about the form of the test. This is what it ended up looking like, after maybe half a day, plus a little more playing with how to express expectations in Kotlin.

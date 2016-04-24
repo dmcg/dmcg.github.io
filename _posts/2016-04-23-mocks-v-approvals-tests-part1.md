@@ -27,7 +27,15 @@ class JournalIndexer(...) {
 }
 ```
 
-The final step is to create the index, load the active ids, remove some that are excluded, pass the remainder to loadJournalWithArticles, and then pass the returned Journals to the JournalIndexer.index(). There are complications of course, we should survive exceptions, and loadJournalWithArticles may return null (no such journal), but the indexer can’t index null. And it would be nice to keep track of how far we’ve got, and what worked and what didn’t. Let’s write a class called IndexRefresher.
+The final step is to:
+
+1. create the index
+2. load the active ids
+3. remove some that are excluded
+4. pass the remainder to loadJournalWithArticles
+5. then pass the returned Journals to the JournalIndexer.index().
+
+There are complications of course, we should survive exceptions, and loadJournalWithArticles may return null (no such journal), but the indexer can’t index null. And it would be nice to keep track of how far we’ve got, and what worked and what didn’t. Let’s write a class called IndexRefresher.
 
 # But First, A Test
 
@@ -116,4 +124,4 @@ No data for journal Id 13646
 ...
 ```
 
-Let’s suspend judgement of this code and test until we see what a mocking approach comes up with - it's [after the break](/2016/04/23/mocks-v-approvals-tests-part2/)
+Let’s suspend judgement of this code and test until we see what a mocking approach comes up with - it's [after the break](/2016/04/23/mocks-v-approvals-tests-part2/).
