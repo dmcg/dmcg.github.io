@@ -7,7 +7,7 @@ Aka: Test Driven Design v Test Driven Development
 
 # Context
 
-In my current gig at [Springer Nature](http://springernature.com) (we're hiring :-) I’ve been TDDing some Kotlin code to index data from a web service into Elastic Search. All the pieces are in place, they just need to be wired together and invoked.
+In my current gig at [Springer Nature](http://springernature.com) ([we're hiring :-](https://www.linkedin.com/jobs/springer-science-business-media-jobs)) I’ve been TDDing some Kotlin code to index data from a web service into Elastic Search. All the pieces are in place, they just need to be wired together and invoked.
 
 The components pieces are Journals
 
