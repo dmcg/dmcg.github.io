@@ -3,6 +3,12 @@
 // Inline and block-level code snippets. Includes tweaks to syntax highlighted
 // snippets from Pygments/Rouge and Gist embeds.
 
+// overrides Prism to make it a bit tighter
+pre[class*="language-"] {
+  padding: 0.5em;
+  margin: .5em 0;
+}
+
 code,
 pre {
   font-family: $code-font-family;

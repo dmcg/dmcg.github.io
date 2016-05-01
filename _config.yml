@@ -5,6 +5,8 @@ markdown: kramdown
 kramdown:
   input: GFM
 
+highlighter: disabled # actually prism kicks in
+
 # Setup
 title:               What I should have said
 tagline:             had I thought what I was saying.
