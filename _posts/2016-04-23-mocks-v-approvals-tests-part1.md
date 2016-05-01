@@ -11,7 +11,7 @@ In my current gig at [Springer Nature](http://springernature.com) ([we're hiring
 
 The components pieces are Journals
 
-```
+``` kotlin
 class Journals(...) {
    fun loadActiveIds(): List<String> {...}
    fun loadJournalWithArticles(id: String, articleCount: Int): Journal? {...}
@@ -20,7 +20,7 @@ class Journals(...) {
 
 and the JournalIndexer
 
-```
+``` kotlin
 class JournalIndexer(...) {
    fun createIndex() {...}
    fun index(journal: JournalJson) {...}
@@ -45,7 +45,7 @@ Whether this is T.D.Development or T.D.Design, I should write a test first. We p
 
 What we *do* have is an HttpFetcher abstraction that allows us to replay previous responses and an Approvals Testing library. We can use the former to use our actual implementation of Journals, and the latter to lock down the progress reporting and indexed data. The test takes quite a bit of setup, but the first time we run it we will hit the real data and can approve the results from processing it.
 
-```
+``` kotlin
 class IndexRefresherApprovalsTest {
 
    @Rule @JvmField val approver = ApprovalsRule.fileSystemRule("src/test/java")
@@ -80,7 +80,7 @@ class IndexRefresherApprovalsTest {
 
 The implementation
 
-```
+``` kotlin
 open class ScratchIndexRefresher(private val articleCount: Int) {
 
    fun refresh(journals: Journals, indexer: ICanIndexJournals, excludedIds: Set<String>) {
@@ -124,4 +124,4 @@ No data for journal Id 13646
 ...
 ```
 
-Let’s suspend judgement of this code and test until we see what a mocking approach comes up with - it's [after the break](/2016/04/23/mocks-v-approvals-tests-part2/).
+Let’s suspend judgement of this code and test until we see what a mocking approach comes up with - it's [after the break](/mocks-v-approvals-tests-part2.html).

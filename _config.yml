@@ -1,6 +1,10 @@
 # Permalinks
 permalink:           none
 
+markdown: kramdown
+kramdown:
+  input: GFM
+
 # Setup
 title:               What I should have said
 tagline:             had I thought what I was saying.

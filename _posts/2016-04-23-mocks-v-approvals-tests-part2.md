@@ -7,7 +7,7 @@ Aka: Test Driven Design v Test Driven Development
 
 # Context
 
-In [Part 1](/2016/04/23/mocks-v-approvals-tests-part1/) we looked at testing an algorithm using Approvals Tests.
+In [Part 1](/mocks-v-approvals-tests-part1.html) we looked at testing an algorithm using Approvals Tests.
 
 In this Part 2, we'll start again using JMock, and see what happens.
 
@@ -15,7 +15,7 @@ In this Part 2, we'll start again using JMock, and see what happens.
 
 The components pieces are Journals
 
-```
+``` kotlin
 class Journals(...) {
    fun loadActiveIds(): List<String> {...}
    fun loadJournalWithArticles(id: String, articleCount: Int): Journal? {...}
@@ -24,7 +24,7 @@ class Journals(...) {
 
 and the JournalIndexer
 
-```
+``` kotlin
 class JournalIndexer(...) {
    fun createIndex() {...}
    fun index(journal: JournalJson) {...}
@@ -47,7 +47,7 @@ We're writing a class called IndexRefresher.
 
 Pulling in JMock wasn’t too painful, but my pair and I did argue quite a bit more about the form of the test. This is what it ended up looking like, after maybe half a day, plus a little more playing with how to express expectations in Kotlin.
 
-```
+``` kotlin
 class IndexRefresherTest {
 
    @Rule @JvmField val mockery = JUnitRuleMockery()
@@ -154,7 +154,7 @@ class IndexRefresherTest {
 
 Here’s the implementation.
 
-```
+``` kotlin
 class IndexRefresher(private val articleCount: Int, private val progress: Progress) {
 
    interface Progress {
