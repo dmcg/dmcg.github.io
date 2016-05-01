@@ -7,7 +7,7 @@ title: Interface v Implementation
 
 Here at Springer Nature [(still hiring :-)](https://www.linkedin.com/jobs/springer-science-business-media-jobs) we have a single-page webapp that recommends academic journals via a small web service which in turn queries an Elastic Search index. The Elastic Search index needs to be refreshed periodically - we're not sure how often, probably once a month or so. The data that is indexed comes from an XML web service, merged and transmogrified in XPath'y ways.
 
-If you've been reading along, yes, this is the same refresher I looked at in the last [2 posts](/2016/04/23/mocks-v-approvals-tests-part1/).
+If you've been reading along, yes, this is the same refresher I looked at in the last [2 posts](/mocks-v-approvals-tests-part1.html).
 
 # Now to Run It
 
