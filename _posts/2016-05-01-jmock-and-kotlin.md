@@ -172,7 +172,7 @@ bind to the previous statement, but can't because `indexer.index(...)` returns `
 ``` kotlin
 class Expektations: Expectations() {
     fun Any?.will(action: Action) = super.will(action)
-    fun Nothing.will(action: Action) = super.will(action)
+    // fun Nothing.will(action: Action) = super.will(action) Update 2016-05-17 - looks like this isn't needed, as Unit extends Any
 }
 ```
 
