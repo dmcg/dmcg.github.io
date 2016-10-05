@@ -3,8 +3,9 @@ layout: post
 title: Extension Functions Can Be Utility Functions
 ---
 
-I enjoyed [Extension functions are not utility functions](https://medium.com/@dimsuz/extension-functions-are-not-utility-functions-74a5f9b53892#.o57pbn5k2), 
-but have to disagree.
+I enjoyed [Extension functions are not utility functions](https://medium.com/@dimsuz/extension-functions-are-not-utility-functions-74a5f9b53892#.o57pbn5k2)
+
+I thought that I disagreed, but on more careful reading maybe not. Instead I'll pull out some extension functions from my current codebase.
 
 We're finding that extension functions are a simple way to make code more expressive.
  
