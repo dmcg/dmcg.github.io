@@ -11,7 +11,15 @@ The article brought out 3 extension function use-cases.
 2.  Adding methods you wish were available on types that you don't own - `JsonNode.getNonBlankText(name: String)`
 3.  Keeping your own classes small by defining operations as extension functions rather than actual methods - `AccessType.toUIString()`
 
-It's this last use that has crept up on me.
+On the Kotlin Slack Channel, Daniel Wellman asked
+
+*"How do you decide when methods should be extension functions and when they should be members (functions) on classes/objects _that you own_?"*
+
+Nathan Armstrong replied
+
+*"I think it's usually when it encapsulates operations on a type in some context tangential to the one the type was made for.  For example, when writing code that intersects two domains or concerns, using extension methods can help you use your existing types more naturally alongside one another without leaking that local utility into other parts of the codebase"*
+
+He's right. So right that I'm going to say that again with many more words and claim the credit.
 
 Most of my Java projects have ended up with a package of domain objects - `Person`, `Address` etc. Kotlin makes these nice and simple with data classes, and when 1.1 allows inheritance these will become even more useful.
  
