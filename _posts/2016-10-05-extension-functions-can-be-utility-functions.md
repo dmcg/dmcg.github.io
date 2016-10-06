@@ -96,6 +96,8 @@ fun Any.asPropertyMap(): Map<String, Any?> = SpaceBlanket(this)
 
 which *is* the archetypal extension function definition - high-level and fundamental.
 
+There are more thoughts on this subject in a follow up article - [More Kotlin Extension Fun](/more-kotlin-extension-fun.html)
+
 If you like this, [Nat Pryce](www.natpryce.com) and I are going to be talking about Expressive Kotlin at the [Kotlin Night London](https://info.jetbrains.com/Kotlin-Night-London.html) next Wednesday, 12 October 2016.
 
 Thanks to [Springer Nature](http://www.springernature.com) for allowing me to publish examples from their code. If you're looking for a Kotlin job in London, they are hiring - please contact me using one of the links in the sidebar.
