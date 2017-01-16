@@ -25,13 +25,13 @@ public class FizzBuzzTheoryTests {
     }
 
     @Theory
-    public void starts_with_fizz_when_divisble_by_3(int i) {
+    public void starts_with_fizz_when_divisible_by_3(int i) {
         assumeTrue(i % 3 == 0);
         assertTrue(fizzBuzz(i).matches("Fizz.*"));
     }
 
     @Theory
-    public void ends_with_buzz_when_divisble_by_5(int i) {
+    public void ends_with_buzz_when_divisible_by_5(int i) {
         assumeTrue(i % 5 == 0);
         assertTrue(fizzBuzz(i).matches(".*Buzz"));
     }

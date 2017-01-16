@@ -230,7 +230,7 @@ The traditional goal of unit tests is to prevent accidental breakage during modi
 There have been times when the tests that I have written to guide the implementation of a system have not communicated well, or have holes that might allow regressions to slip through (what is `fizzBuzz(0)`?). Before we consider the job done, we should look at the tests that helped us drive the design and judge them against the regression and communication criteria. If they fall short, then add examples, refactor the tests, maybe even recast them as theories. Don't expect the test artifact of TDD to be perfect first time, because [TDD Is About Design, Not Testing](http://www.drdobbs.com/tdd-is-about-design-not-testing/229218691).
 
  
-Tune in later for Part 2, where I'll repeat TDD FizzBuzz using JUnit theories from the outset.
+Tune in later for [Part 2](/tdd-v-testing-part2.html), where I'll repeat TDD FizzBuzz using JUnit theories from the outset.
 
 
 
