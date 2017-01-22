@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Test Driven Development v Testing Part 1
+title: Test Driven Development v Testing Part 1 - Example Tests
 ---
 
 Dominic Fox wrote a very good post recently titled [How to TDD FizzBuzz with JUnit Theories](https://opencredo.com/tdd-fizzbuzz-junit-theories/). In it he wrote *"For a long time I was of the opinion that a) FizzBuzz couldn’t be meaningfully TDD’d, and b) this illustrated a common pitfall with TDD."*
@@ -173,46 +173,46 @@ Let's have a look at those tests all together.
 and compare them to those that Dominic said *"contain the logic of the implementation, only in an obscure and intractable form."*
 
 ```java
-@Test
-public void multiplesOfThreeButNotFiveAreFizz() {
-    for (int i = 1; i <= 100; i++) {
-        if ((i % 3 == 0) && !(i % 5 == 0)) {
-            assertEquals("Fizz", unit.apply(i));
+    @Test
+    public void multiplesOfThreeButNotFiveAreFizz() {
+        for (int i = 1; i <= 100; i++) {
+            if ((i % 3 == 0) && !(i % 5 == 0)) {
+                assertEquals("Fizz", unit.apply(i));
+            }
         }
     }
-}
- 
-@Test
-public void multiplesOfFiveButNotThreeAreBuzz() {
-    for (int i = 1; i <= 100; i++) {
-        if (!(i % 3 == 0) && (i % 5 == 0)) {
-            assertEquals("Buzz", unit.apply(i));
+     
+    @Test
+    public void multiplesOfFiveButNotThreeAreBuzz() {
+        for (int i = 1; i <= 100; i++) {
+            if (!(i % 3 == 0) && (i % 5 == 0)) {
+                assertEquals("Buzz", unit.apply(i));
+            }
         }
     }
-}
- 
-public void multiplesOfThreeAndFiveAreFizzBuzz() {
-    for (int i = 1; i <= 100; i++) {
-        if ((i % 3 == 0) && (i % 5 == 0)) {
-            assertEquals("FizzBuzz", unit.apply(i));
+     
+    public void multiplesOfThreeAndFiveAreFizzBuzz() {
+        for (int i = 1; i <= 100; i++) {
+            if ((i % 3 == 0) && (i % 5 == 0)) {
+                assertEquals("FizzBuzz", unit.apply(i));
+            }
         }
-    }
-} 
+    } 
 // ...and so on
 ```
 
 or this, which he said *"feels wildly unsatisfactory ... It’s hard to see this as really rigorously testing anything."*
 
 ```java
-@Test
-public void testSomeJudiciouslyChosenValues() {
-    assertEquals("Fizz", unit.apply(3));
-    assertEquals("4", unit.apply(4));
-    assertEquals("Buzz", unit.apply(5));
-    assertEquals("FizzBuzz", unit.apply(15));
-    // just in case
-    assertEquals("FizzBuzz", unit.apply(30));
-}
+    @Test
+    public void testSomeJudiciouslyChosenValues() {
+        assertEquals("Fizz", unit.apply(3));
+        assertEquals("4", unit.apply(4));
+        assertEquals("Buzz", unit.apply(5));
+        assertEquals("FizzBuzz", unit.apply(15));
+        // just in case
+        assertEquals("FizzBuzz", unit.apply(30));
+    }
 ```
 
 Are any of these tests good enough? Which ones provide best coverage and communication? I'll leave you to mull that over while I [ride my bike](https://www.strava.com/activities/831826153).
@@ -229,7 +229,6 @@ The traditional goal of unit tests is to prevent accidental breakage during modi
 
 There have been times when the tests that I have written to guide the implementation of a system have not communicated well, or have holes that might allow regressions to slip through (what is `fizzBuzz(0)`?). Before we consider the job done, we should look at the tests that helped us drive the design and judge them against the regression and communication criteria. If they fall short, then add examples, refactor the tests, maybe even recast them as theories. Don't expect the test artifact of TDD to be perfect first time, because [TDD Is About Design, Not Testing](http://www.drdobbs.com/tdd-is-about-design-not-testing/229218691).
 
- 
 Tune in later for [Part 2](/tdd-v-testing-part2.html), where I'll repeat TDD FizzBuzz using JUnit theories from the outset.
 
 

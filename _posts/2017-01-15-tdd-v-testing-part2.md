@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Test Driven Development v Testing Part 2
+title: Test Driven Development v Testing Part 2 - Theory Tests
 ---
 
 As promised at the end of [Part 1](/tdd-v-testing-part1.html), I'll now go through the steps of TDDing FizzBuzz with JUnit theories, inspired by Dominic Fox's excellent post titled [How to TDD FizzBuzz with JUnit Theories](https://opencredo.com/tdd-fizzbuzz-junit-theories/). My reasons for doing this are
@@ -216,5 +216,5 @@ I can better imagine writing theories after the TDD cycle, to better specify and
 
 If you like this post, or even if you don't, then you should read Nat Pryce's [article](http://natpryce.com/articles/000807.html) about using property tests, closely related to JUnit Theories, to TDD another old favourite, the Diamond Kata. 
 
-And re-reading Dominic's post in the light of my trying the theories, I think that there is a Part 3 of this series coming, so follow me on [Twitter](https://twitter.com/duncanmcg) if you want to know when it is published.
+And re-reading Dominic's post in the light of my trying the theories, I think that there is a [Part 3](/tdd-v-testing-part3.html) of this series coming, so follow me on [Twitter](https://twitter.com/duncanmcg) if you want to know when it is published.
 

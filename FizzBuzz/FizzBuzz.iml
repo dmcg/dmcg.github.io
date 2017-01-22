@@ -19,5 +19,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="com.oneeyedmen:okeydoke:1.0.6" level="project" />
   </component>
 </module>
