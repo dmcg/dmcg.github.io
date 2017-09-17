@@ -19,7 +19,7 @@ Even once I had introduced `@State`, used a `Blackhole`, and run enough warmup i
 
 ## How JMH runs benchmarks
 
-JHM works (by default) by running benchmark methods in a tight loop until 1 second has elapsed, counting the number of loops in that time. These 1 s iterations are repeated a configurable number of times, proceeded by a configurable number of 1 s warmup iterations whose times are reported, but ignored. All iterations for a single benchmark are performed in a separate VM than that orchestrating the measurements, with new VMs created to an outer batch. 
+JMH works (by default) by running benchmark methods in a tight loop until 1 second has elapsed, counting the number of loops in that time. These 1 s iterations are repeated a configurable number of times, proceeded by a configurable number of 1 s warmup iterations whose times are reported, but ignored. All iterations for a single benchmark are performed in a separate VM than that orchestrating the measurements, with new VMs created to an outer batch. 
 
 The default settings are 10 (serial) JVM forks, in each of which 20 warmup iterations are performed followed by 20 measurements, for a total of 200 1 s iterations per benchmark. 
 
@@ -68,7 +68,7 @@ JavaBaseline.baseline    thrpt  200  359400874.797 ± 3190513.351  ops/s
 KotlinBaseline.baseline  thrpt  200  363343435.012 ± 5184390.204  ops/s
 ```
 
-There's a lot of spurious precision going on there, making it hard to see the wood for the trees. Luckily JHM can also output to a CSV file, 
+There's a lot of spurious precision going on there, making it hard to see the wood for the trees. Luckily JMH can also output to a CSV file, 
 
 ```
 "Benchmark","Mode","Threads","Samples","Score","Score Error (99.9%)","Unit"
