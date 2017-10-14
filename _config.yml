@@ -14,7 +14,9 @@ description:         Duncan thinks it through
 url:                 http://oneeyedmen.com
 paginate:            1
 disqusid:            oneeyedmencom
-# baseurl:             "http://dmcg.github.io"
+# baseurl:             "http://oneeyedmen.com/"
+
+future: true
 
 # Assets
 #
