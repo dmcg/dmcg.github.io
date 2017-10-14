@@ -4,11 +4,12 @@ title: The Cost of Kotlin Language Features - Preliminary Results Part 2 - Strin
 layout: post
 
 ---
-This is Part 2 in a a series examining *The Cost of Kotlin Language Features* in preparation for my presentation at [KotlinConf](http://kotlinconf.com) in November. The series consists of 
+This is Part 2 in a series examining *The Cost of Kotlin Language Features* in preparation for my presentation at [KotlinConf](http://kotlinconf.com) in November. The series consists of 
 
 * [Lessons Learned Writing Java and Kotlin Microbenchmarks](benchmarks.html)
 * [Part 1 - Baselines](cost-of-kotlin-preliminary-results-part1-baselines.html)
 * [Part 2 - Strings](cost-of-kotlin-preliminary-results-part2-strings.html)
+* [Part 3 - Invocation](cost-of-kotlin-preliminary-results-part3-invocation.html)
 
 I'm publishing these results ahead of KotlinConf to give an opportunity for peer-review, so please do give me your feedback about the content, experimental method, code and conclusions. If you're reading this before November 2017 it isn't too late to save me from making a fool of myself in person, rather than just on the Internet.
  

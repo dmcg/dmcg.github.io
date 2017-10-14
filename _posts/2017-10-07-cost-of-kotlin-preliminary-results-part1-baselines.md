@@ -102,6 +102,7 @@ Edit - here are the parts as I write them
 * [Lessons Learned Writing Java and Kotlin Microbenchmarks](benchmarks.html)
 * [Part 1 - Baselines](cost-of-kotlin-preliminary-results-part1-baselines.html)
 * [Part 2 - Strings](cost-of-kotlin-preliminary-results-part2-strings.html)
+* [Part 3 - Invocation](cost-of-kotlin-preliminary-results-part3-invocation.html)
 
  
 
