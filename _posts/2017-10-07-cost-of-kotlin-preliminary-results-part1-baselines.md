@@ -104,6 +104,7 @@ Edit - here are the parts as I write them
 * [Part 2 - Strings](cost-of-kotlin-preliminary-results-part2-strings.html)
 * [Part 3 - Invocation](cost-of-kotlin-preliminary-results-part3-invocation.html)
 * [Part 4 - Nullable Primitives](cost-of-kotlin-preliminary-results-part-4-nullable-primitives.html)
+* [Part 5 - Properties](cost-of-kotlin-preliminary-results-part-5-properties.html)
 
 
  

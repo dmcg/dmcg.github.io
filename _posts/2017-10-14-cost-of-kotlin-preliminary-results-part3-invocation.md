@@ -11,6 +11,7 @@ This is Part 3 in a series examining *The Cost of Kotlin Language Features* in p
 * [Part 2 - Strings](cost-of-kotlin-preliminary-results-part2-strings.html)
 * [Part 3 - Invocation](cost-of-kotlin-preliminary-results-part3-invocation.html)
 * [Part 4 - Nullable Primitives](cost-of-kotlin-preliminary-results-part-4-nullable-primitives.html)
+* [Part 5 - Properties](cost-of-kotlin-preliminary-results-part-5-properties.html)
 
 I'm publishing these results ahead of KotlinConf to give an opportunity for peer-review, so please do give me your feedback about the content, experimental method, code and conclusions. If you're reading this before November 2017 it isn't too late to save me from making a fool of myself in person, rather than just on the Internet. As ever the current state of the code to run the benchmarks is available for inspection and comment [on GitHub](https://github.com/dmcg/kostings).
  
