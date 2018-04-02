@@ -1,6 +1,6 @@
 /*-
 ---
-title: Fun with Nothing?
+title: Nothing? can save us
 layout: post
 ---
 -*/
@@ -28,7 +28,7 @@ Imagine, if you can, that you need to capture data about your Customers
     //`
 
 /*-
-Due to the power of Kotlin nullability, we can see that we are required to capture a `firstName`, `lastName`, `email` and `iso2CountryCode`, but that everything else is optional.
+Due to the power of Kotlin null safety, we can see that we are required to capture a `firstName`, `lastName`, `email` and `iso2CountryCode`, but that everything else is optional.
 
 We dutifully write an HTML form with validation rules to ensure that we have what we need, post it off to some HTTP handler, and set to to write the code to persist our data class to some datastore -
 -*/
@@ -45,11 +45,12 @@ We dutifully write an HTML form with validation rules to ensure that we have wha
 /*-
 If you're ahead of me here, or just a run of the mill pedant, you'll be saying, "But Duncan, what about that id?"
 
-Ah yes. Identifiers are usually dished out by the datastore, so we don't have one to create a Customer to save. The Java approach would be to allow the id property to be nullable, but if we do that in Kotlin, every time we reference a Customer id we will have to explicitly allow for the null - it's going to get tedious pretty quickly.
+Ah yes. Identifiers are usually dished out by the datastore, so we don't have one at the point that we create a Customer to save. In Java null would be a valid value for the id (as well as every other reference), but if we specify the id as nullable in Kotlin; every time we reference a Customer id we will have to explicitly allow for the null - it's going to get tedious pretty quickly.
 -*/
 
 object B {
 /*-
+
 An alternative is to have a separate class to model the unsaved customer.
 -*/
 

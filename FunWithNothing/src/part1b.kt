@@ -1,7 +1,8 @@
 
 /*-
-Given the title of this post, it won't surprise you to learn that generics can rescue us. Let's make the type of the id
-generic - constrained to `String?`
+## Nothing? can save us
+
+Let's make the type of the id generic - constrained to `String?`
 -*/
 
 //`
@@ -20,33 +21,47 @@ data class CustomerData<out T : String?>(
 //`
 
 /*-
-So our id must be at least a nullable String. A saved Customer has an id, so we can tighten `String?` to `String` in this case.
+So our id must be compatible with nullable String.
+
+A saved Customer has an id, so we can tighten `String?` to `String` in this case.
 -*/
 
 //`
 typealias Customer = CustomerData<String>
 
 val existingCustomer = Customer("123", "Fred", "Flintstone", "fred@bedrock.org", iso2CountryCode = "US")
+//`
+
+/*-
+Now a customer's id must be non-null, which makes our life simple
+-*/
+
+//`
 val thisIsFine: String = existingCustomer.id
 
 val doesntCompile = Customer(null, "Fred", "Flintstone", "fred@bedrock.org", iso2CountryCode = "US")
 //`
 
 /*-
-Unsaved customers have a null id. The type of `null` is `Nothing?`, which is helpfully compatible with `String?` but not `String`
+We want our unsaved customers have a null id. The type of `null` is `Nothing?`, which is helpfully substitutable for `String?`
 -*/
 
 //`
 typealias UnsavedCustomer = CustomerData<Nothing?>
 
 val newCustomer = UnsavedCustomer(null, "Fred", "Flintstone", "fred@bedrock.org", iso2CountryCode = "US")
+//`
 
-val typeMismatch2: String = newCustomer.id
-    // Required: String Found: Nothing?
+/*-
+You can't use a String where you expect a Nothing? though, so null is the only acceptable value of an UnsavedCustomer id
+-*/
 
+//`
 val typeMismatch = UnsavedCustomer("123", "Fred", "Flintstone", "fred@bedrock.org", iso2CountryCode = "US")
     // Required: Nothing? Found: String
 
+val typeMismatch2: String = newCustomer.id
+    // Required: String Found: Nothing?
 //`
 
 /*-
