@@ -7,6 +7,7 @@ This is Part 2 in a series looking at functional error handling in Kotlin. The p
 * [Part 1 - Exceptions](failure-is-not-an-option-part-1.html)
 * [Part 2 - Either](failure-is-not-an-option-part-2.html)
 * [Part 3 - Result and Fold](failure-is-not-an-option-part-3.html)
+* [Part 4 - Either v Exception](failure-is-not-an-option-part-4.html)
 
 In this second episode I’ll look at why functional programming tends to avoid exceptions, and what it uses instead.
 
@@ -32,7 +33,7 @@ If we want these things, then how should we signal and recover from errors? A ti
 fun parseInt(s: String): Int? = TODO()
 ```
 
-In Kotlin our clients would know that the result was `String?`, and would explicitly be forced to deal with the case where the string did not represent an int, so this would be a fine solution. In Java it would be less fine, as there is no way to make the client consider null. In this case we could (for Java 8+) define
+In Kotlin our clients would know that the result was `Int?`, and would explicitly be forced to deal with the case where the string did not represent an int, so this would be a fine solution. In Java it would be less fine, as there is no way to make the client consider null. In this case we could (for Java 8+) define
 
 ```java
 public static Optional<Integer> parseInt(String s)
