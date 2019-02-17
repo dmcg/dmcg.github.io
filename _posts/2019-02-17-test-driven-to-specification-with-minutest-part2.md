@@ -268,7 +268,8 @@ class PartitionTests : JUnit5Minutests {
                 deriveFixture {
                     // Note that we have added a predicate to allow the same items as the other tests
                     parentFixture.copy(
-                        predicates = listOf(::isBiggerThan10, ::isNegative, ::isZero, ::isPositive))
+                        predicates = listOf(::isBiggerThan10, ::isNegative, ::isZero, ::isPositive)
+                    )
                 }
                 test("returns an empty list for that predicate") {
                     check(items, predicates, listOf(emptyList(), listOf(-1), listOf(0), listOf(1, 2, 3)))
@@ -303,6 +304,7 @@ class PartitionTests : JUnit5Minutests {
         fun assertResultIs(vararg expected: List<Int>) {
             assertEquals(expected.asList(), items.partition(predicates))
         }
+
         fun withPredicates(vararg predicates: (Int) -> Boolean) =
             copy(predicates = predicates.asList())
     }
@@ -362,6 +364,7 @@ class PartitionTests : JUnit5Minutests {
         fun assertResultIs(vararg expected: List<Int>) {
             assertEquals(expected.asList(), items.partition(predicates))
         }
+
         fun withItems(vararg items: Int) = copy(items = items.asList())
         fun withPredicates(vararg predicates: (Int) -> Boolean) =
             copy(predicates = predicates.asList())
@@ -403,11 +406,10 @@ class PartitionTests : JUnit5Minutests {
             }
             context("an item matches more than one predicate") {
                 deriveFixture {
-                    withItems(1, 2, 11)
-                        .withPredicates(::isPositive, ::isBiggerThan10)
+                    withPredicates(::isBiggerThan10, ::isNegative, ::isZero, ::isPositive, ::isBiggerThan1)
                 }
                 test("item is assigned to the first matching predicate") {
-                    assertResultIs(listOf(1, 2, 11), emptyList())
+                    assertResultIs(emptyList(), listOf(-1), listOf(0), listOf(1, 2, 3), emptyList())
                 }
             }
             context("repeated predicates") {
@@ -449,6 +451,107 @@ class PartitionTests : JUnit5Minutests {
                 deriveFixture {
                     withPredicates(::isNegative, ::isZero, ::isPositive)
                 }
+                test("returns an empty list for each predicate") {
+                    assertResultIs(emptyList(), emptyList(), emptyList())
+                }
+            }
+        }
+    }
+}
+```
+
+Actually, I'm not happy with the deriveFixture calls there - they leak Minutest minutiae into our tests. Luckily this is
+`All Just Kotlin (TM)` and so we can make better named operations to do the job for us. I'm going with `itemsAre` and
+`predicatesAre`. Now our spec reads in a way that we might even show to our customers. Except, perhaps, for the term
+`predicates`.
+
+```kotlin
+class PartitionTests : JUnit5Minutests {
+
+    data class Fixture(
+        val items: List<Int> = emptyList(),
+        val predicates: List<(Int) -> Boolean> = emptyList()
+    ) {
+        fun assertResultIs(vararg expected: List<Int>) {
+            assertEquals(expected.asList(), items.partition(predicates))
+        }
+    }
+
+    private fun TestContextBuilder<Fixture, Fixture>.withItems(vararg items: Int) {
+        deriveFixture {
+            copy(items = items.asList())
+        }
+    }
+
+    private fun TestContextBuilder<Fixture, Fixture>.withPredicates(vararg predicates: (Int) -> Boolean) {
+        deriveFixture {
+            copy(predicates = predicates.asList())
+        }
+    }
+
+    fun tests() = rootContext<Fixture> {
+        fixture { Fixture() }
+        context("some items") {
+            withItems(-1, 0, 1, 2, 3)
+            context("no predicates") {
+                test("returns empty list") {
+                    assertResultIs()
+                }
+            }
+            context("everything matches something") {
+                withPredicates(::isNegative, ::isZero, ::isPositive)
+                test("returns a list for each predicate") {
+                    assertResultIs(listOf(-1), listOf(0), listOf(1, 2, 3))
+                }
+            }
+            context("a predicate doesn't match any item") {
+                withPredicates(::isBiggerThan10, ::isNegative, ::isZero, ::isPositive)
+                test("returns an empty list for that predicate") {
+                    assertResultIs(emptyList(), listOf(-1), listOf(0), listOf(1, 2, 3))
+                }
+            }
+            context("an item doesn't match any predicate") {
+                withPredicates(::isNegative, ::isPositive)
+                test("item is not in the returned lists") {
+                    assertResultIs(listOf(-1), listOf(1, 2, 3))
+                }
+            }
+            context("an item matches more than one predicate") {
+                withPredicates(::isBiggerThan10, ::isNegative, ::isZero, ::isPositive, ::isBiggerThan1)
+                test("item is assigned to the first matching predicate") {
+                    assertResultIs(emptyList(), listOf(-1), listOf(0), listOf(1, 2, 3), emptyList())
+                }
+            }
+            context("repeated predicates") {
+                withPredicates(::isNegative, ::isNegative, ::isZero, ::isPositive)
+                test("item is assigned to each predicate") {
+                    assertResultIs(listOf(-1), listOf(-1), listOf(0), listOf(1, 2, 3))
+                }
+            }
+            context("lambda predicates") {
+                withPredicates({ x -> isNegative(x) }, { x -> isPositive(x) })
+                test("item is assigned to each predicate") {
+                    assertResultIs(listOf(-1), listOf(1, 2, 3))
+                }
+            }
+            context("items in a different order") {
+                withItems(3, 2, 1, 0, -1)
+                context("predicates in a different order") {
+                    withPredicates(::isZero, ::isNegative, ::isPositive)
+                    test("input order is preserved") {
+                        assertResultIs(listOf(0), listOf(-1), listOf(3, 2, 1))
+                    }
+                }
+            }
+        }
+        context("no items") {
+            context("no predicates") {
+                test("returns empty list") {
+                    assertResultIs()
+                }
+            }
+            context("some predicates") {
+                withPredicates(::isNegative, ::isZero, ::isPositive)
                 test("returns an empty list for each predicate") {
                     assertResultIs(emptyList(), emptyList(), emptyList())
                 }
