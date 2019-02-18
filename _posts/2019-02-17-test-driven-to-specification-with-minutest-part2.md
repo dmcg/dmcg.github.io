@@ -124,36 +124,24 @@ just grouping what we have.
 fun tests() = rootContext<Unit>() {
     context("some items") {
         test("every item matches a predicate and every predicate matches an item") {
-            val items = listOf(-1, 0, 1, 2, 3)
-            val predicates = listOf(::isNegative, ::isZero, ::isPositive)
-            check(items, predicates, listOf(listOf(-1), listOf(0), listOf(1, 2, 3)))
+            // ...
         }
         test("an item matches no predicate") {
-            val items = listOf(-1, 0, 1, 2, 3)
-            val predicates = listOf(::isZero, ::isPositive)
-            check(items, predicates, listOf(listOf(0), listOf(1, 2, 3)))
+            // ...
         }
         test("a predicate matches no item") {
-            val items = listOf(0, 1, 2, 3)
-            val predicates = listOf(::isNegative, ::isZero, ::isPositive)
-            check(items, predicates, listOf(listOf(), listOf(0), listOf(1, 2, 3)))
+            // ...
         }
         test("no predicates") {
-            val items = listOf(-1, 0, 1, 2, 3)
-            val predicates = emptyList<(Int) -> Boolean>()
-            check(items, predicates, emptyList())
+            // ...
         }
     }
     context("no items") {
         test("some predicates") {
-            val items = emptyList<Int>()
-            val predicates = listOf(::isNegative, ::isZero, ::isPositive)
-            check(items, predicates, listOf(emptyList(), emptyList(), emptyList()))
+            // ...
         }
         test("no predicates") {
-            val items = emptyList<Int>()
-            val predicates = emptyList<(Int) -> Boolean>()
-            check(items, predicates, emptyList())
+            // ...
         }
     }
 }
@@ -352,7 +340,14 @@ class PartitionTests : JUnit5Minutests {
 ```
 
 This is longer than the original, but, for me at least, the contexts give my brain room to consider other cases, and
-somewhere to put the tests that doesn't overwhelm the reader. A more complete spec then might look like this.
+somewhere to put the tests that doesn't overwhelm the reader.
+
+Nitpicking - I'm not happy with the deriveFixture calls there - they leak Minutest minutiae into our tests. Luckily this is
+`All Just Kotlin (TM)` and so we can make better named operations to do the job for us. I'm going with `withItems` and
+`withPredicates`.
+
+Now our spec reads in a way that we might even show to our customers (except, perhaps, for the term `predicates`). We
+even have the cognitive space to add tests that show what happens in some special cases.
 
 ```kotlin
 class PartitionTests : JUnit5Minutests {
@@ -363,134 +358,12 @@ class PartitionTests : JUnit5Minutests {
     ) {
         fun assertResultIs(vararg expected: List<Int>) {
             assertEquals(expected.asList(), items.partition(predicates))
-        }
-
-        fun withItems(vararg items: Int) = copy(items = items.asList())
-        fun withPredicates(vararg predicates: (Int) -> Boolean) =
-            copy(predicates = predicates.asList())
-    }
-
-    fun tests() = rootContext<Fixture> {
-        context("some items") {
-            fixture {
-                Fixture(items = listOf(-1, 0, 1, 2, 3))
-            }
-            context("no predicates") {
-                test("returns empty list") {
-                    assertResultIs()
-                }
-            }
-            context("everything matches something") {
-                deriveFixture {
-                    withPredicates(::isNegative, ::isZero, ::isPositive)
-                }
-                test("returns a list for each predicate") {
-                    assertResultIs(listOf(-1), listOf(0), listOf(1, 2, 3))
-                }
-            }
-            context("a predicate doesn't match any item") {
-                deriveFixture {
-                    withPredicates(::isBiggerThan10, ::isNegative, ::isZero, ::isPositive)
-                }
-                test("returns an empty list for that predicate") {
-                    assertResultIs(emptyList(), listOf(-1), listOf(0), listOf(1, 2, 3))
-                }
-            }
-            context("an item doesn't match any predicate") {
-                deriveFixture {
-                    withPredicates(::isNegative, ::isPositive)
-                }
-                test("item is not in the returned lists") {
-                    assertResultIs(listOf(-1), listOf(1, 2, 3))
-                }
-            }
-            context("an item matches more than one predicate") {
-                deriveFixture {
-                    withPredicates(::isBiggerThan10, ::isNegative, ::isZero, ::isPositive, ::isBiggerThan1)
-                }
-                test("item is assigned to the first matching predicate") {
-                    assertResultIs(emptyList(), listOf(-1), listOf(0), listOf(1, 2, 3), emptyList())
-                }
-            }
-            context("repeated predicates") {
-                deriveFixture {
-                    withPredicates(::isNegative, ::isNegative, ::isZero, ::isPositive)
-                }
-                test("item is assigned to each predicate") {
-                    assertResultIs(listOf(-1), listOf(-1), listOf(0), listOf(1, 2, 3))
-                }
-            }
-            context("lambda predicates") {
-                deriveFixture {
-                    withPredicates({ x -> isNegative(x) }, { x -> isPositive(x) })
-                }
-                test("item is assigned to each predicate") {
-                    assertResultIs(listOf(-1), listOf(1, 2, 3))
-                }
-            }
-            context("items in a different order") {
-                deriveFixture {
-                    withItems(3, 2, 1, 0, -1)
-                        .withPredicates(::isNegative, ::isZero, ::isPositive)
-                }
-                test("input order is preserved") {
-                    assertResultIs(listOf(-1), listOf(0), listOf(3, 2, 1))
-                }
-            }
-        }
-        context("no items") {
-            fixture {
-                Fixture()
-            }
-            context("no predicates") {
-                test("returns empty list") {
-                    assertResultIs()
-                }
-            }
-            context("some predicates") {
-                deriveFixture {
-                    withPredicates(::isNegative, ::isZero, ::isPositive)
-                }
-                test("returns an empty list for each predicate") {
-                    assertResultIs(emptyList(), emptyList(), emptyList())
-                }
-            }
-        }
-    }
-}
-```
-
-Actually, I'm not happy with the deriveFixture calls there - they leak Minutest minutiae into our tests. Luckily this is
-`All Just Kotlin (TM)` and so we can make better named operations to do the job for us. I'm going with `itemsAre` and
-`predicatesAre`. Now our spec reads in a way that we might even show to our customers. Except, perhaps, for the term
-`predicates`.
-
-```kotlin
-class PartitionTests : JUnit5Minutests {
-
-    data class Fixture(
-        val items: List<Int> = emptyList(),
-        val predicates: List<(Int) -> Boolean> = emptyList()
-    ) {
-        fun assertResultIs(vararg expected: List<Int>) {
-            assertEquals(expected.asList(), items.partition(predicates))
-        }
-    }
-
-    private fun TestContextBuilder<Fixture, Fixture>.withItems(vararg items: Int) {
-        deriveFixture {
-            copy(items = items.asList())
-        }
-    }
-
-    private fun TestContextBuilder<Fixture, Fixture>.withPredicates(vararg predicates: (Int) -> Boolean) {
-        deriveFixture {
-            copy(predicates = predicates.asList())
         }
     }
 
     fun tests() = rootContext<Fixture> {
         fixture { Fixture() }
+
         context("some items") {
             withItems(-1, 0, 1, 2, 3)
             context("no predicates") {
@@ -558,6 +431,12 @@ class PartitionTests : JUnit5Minutests {
             }
         }
     }
+
+    private fun TestContextBuilder<Fixture, Fixture>.withItems(vararg items: Int) =
+        deriveFixture { copy(items = items.asList()) }
+
+    private fun TestContextBuilder<Fixture, Fixture>.withPredicates(vararg predicates: (Int) -> Boolean) =
+        deriveFixture { copy(predicates = predicates.asList()) }
 }
 ```
 
