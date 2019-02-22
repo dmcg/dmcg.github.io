@@ -162,13 +162,15 @@ class PartitionTests : JUnit5Minutests {
     fun tests() = rootContext<Fixture>() {
         context("some items") {
             // ...
+            test("ok") {}
         }
     }
 }
 ```
 
-If you run this you get a nasty `ClassCastException` which is a [bad way](https://github.com/dmcg/minutest/issues/24) of
- telling you that you need to tell Minutest how to provide a fixture to the tests.
+If you run this you get a ~~nasty `ClassCastException` which is a [bad way](https://github.com/dmcg/minutest/issues/24) of~~
+`IllegalStateException: Fixture has not been set in context "some items"`
+telling you that you need to tell Minutest how to provide a fixture to the tests.
 
 We can do that with a `fixture` block, which returns the fixture that should be used in tests in the context. So in `some items`
 we use `Fixture(listOf(-1, 0, 1, 2, 3))`, and in `no items`, `Fixture(emptyList())`.
@@ -409,11 +411,9 @@ class PartitionTests : JUnit5Minutests {
             }
             context("items in a different order") {
                 withItems(3, 2, 1, 0, -1)
-                context("predicates in a different order") {
-                    withPredicates(::isZero, ::isNegative, ::isPositive)
-                    test("input order is preserved") {
-                        assertResultIs(listOf(0), listOf(-1), listOf(3, 2, 1))
-                    }
+                withPredicates(::isNegative, ::isZero, ::isPositive)
+                test("input order is preserved") {
+                    assertResultIs(listOf(-1), listOf(0), listOf(3, 2, 1))
                 }
             }
         }
@@ -433,10 +433,12 @@ class PartitionTests : JUnit5Minutests {
     }
 
     private fun TestContextBuilder<Fixture, Fixture>.withItems(vararg items: Int) =
-        deriveFixture { copy(items = items.asList()) }
+        // before_ allows us to replace an existing fixture, and to have multiple calls
+        before_ { copy(items = items.asList()) }
 
     private fun TestContextBuilder<Fixture, Fixture>.withPredicates(vararg predicates: (Int) -> Boolean) =
-        deriveFixture { copy(predicates = predicates.asList()) }
+        // so that we can combine withs in the same context
+        before_ { copy(predicates = predicates.asList()) }
 }
 ```
 
@@ -447,4 +449,6 @@ more formal and comprehensive set of tests that capture more of the behaviour, w
 contexts and the fixtures.
 
 In the (probably) final part of this series I'll look at property-based testing of our function.
+
+[Post updated 2019-02-22]
 
