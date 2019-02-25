@@ -15,10 +15,14 @@ developers what our code does, or to support safe refactoring of that code.
 The ideal situation then would be for our test framework to support us as we TDD our way to some code, and then refactor
 the tests to a more formal specification. That is the subject of this series.
 
+## The Problem
+
 The functionality that I'm going to implement was inspired by a question on the
 [Kotlin Slack](https://kotlinlang.slack.com/archives/C0922A726/p1549403911046300). It boils down to partitioning a list
 into other lists, rather like the standard `fun <T> Iterable<T>.partition(predicate: (T) -> Boolean): Pair<List<T>, List<T>>`
 but for more than one predicate and more than two output lists.
+
+## First Test
 
 This is TDD, so we had better start with a test. In Minutest it looks like this.
 
@@ -31,6 +35,8 @@ class PartitionTests : JUnit5Minutests {
 ```
 
 We can point to this in IntelliJ and run it - if all is well we are ready to get on with the job proper.
+
+## Driving an Interface
 
 Now let's sketch out the form of the function that we want to implement by creating an example.
 
@@ -61,6 +67,8 @@ fun <T> Iterable<T>.partition(predicates: List<(T) -> Boolean>): List<List<T>> =
 ```
 
 Now it compiles but fails with the `kotlin.NotImplementedError` from our `TODO`
+
+## Driving an Implementation
 
 I'm not clever enough to get this working in one step, so I'm going to step back and try just a degenerate case. We can
 keep the first test but `SKIP` it for now, and then add a test that I can get to pass.
@@ -183,6 +191,8 @@ fun <T> Iterable<T>.partition(predicates: List<(T) -> Boolean>): List<List<T>> {
 
 ```
 
+## Almost There?
+
 Running the tests, `items and predicates` passes, so we did something right, but the other two fail, so they've proved
 worthwhile too. `no predicates` reports:
 
@@ -220,6 +230,9 @@ fun <T> Iterable<T>.partition(predicates: List<(T) -> Boolean>): List<List<T>> {
 ```
 
 Triumph - our tests pass - let's review.
+
+## Working Code
+
 
 ```kotlin
 class PartitionTests : JUnit5Minutests {
@@ -261,6 +274,8 @@ are too many loose ends for me to feel comfortable that I know the way that the 
 I like the implementation - it's declarative and the types feel good, but you'd still have to puzzle out the edge cases;
  and if that's the case, then any refactoring might change the behaviour. Which in something like `partition` could have
 ripple-effects through any dependent code.
+
+## Adding More Tests
 
 Looking through our test names, we can see a lack of precision. If we fix that we can see that we are missing the case
 of no items and no predicates. This is just the sort of edge case that could happen and return an unexpected value -
@@ -307,6 +322,8 @@ larger than the size of the predicates list. I dislike this because of the asymm
 Finally we already know that predicates that match no item are represented by an empty list in the output - but let's
 write a test to prove it so that our future selves don't have to think it through.
 
+## Our TDD Solution
+
 Our final tests for today's installment are:
 
 ```kotlin
@@ -351,6 +368,9 @@ class PartitionTests : JUnit5Minutests {
     }
 }
 ```
+
+If I didn't have a Part 2 I think that I'd probably remove some of duplication from this code before checking it in. But
+it's much like many of my TDD tests before Minutest - OK, probabably good enough, but lacking some rigour and expressiveness.
 
 In [Part 2](test-driven-to-specification-with-minutest-part2.html) we will look at refactoring this code to be more
 spec-like. With luck it will be more expressive and less duplicated while covering more of the behaviour of our
