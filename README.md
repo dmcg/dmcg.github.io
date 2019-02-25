@@ -1,25 +1,18 @@
 # Bootstrap
 
-You can build the site locally with jekyll. With rbenv installed, 
-and using the Ruby specified
-in .ruby-version, install jekyll
- 
-```
-eval "$(rbenv init -)"
-
-rbenv version
-
-  2.2.3 (set by /Users/duncan/work/website-jekyll/site/.ruby-version)
-  
-gem install jekyll
-```
+This needs Jekyll installed - I did it with rbenv, bundler and much cursing.
 
 # Build
 
-Jekyll seems to load the gems specified in Gemfile, so 
+```
+eval "$(rbenv init -)"
+
+  
+bundle exec jekyll serve
+```
+
+# Publish
 
 ```
-jekyll serve
+../publish.sh
 ```
-
-just seems to work 
