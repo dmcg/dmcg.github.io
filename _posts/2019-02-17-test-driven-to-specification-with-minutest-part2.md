@@ -207,6 +207,7 @@ class PartitionTests : JUnit5Minutests {
                 check(items, predicates, listOf(listOf(0), listOf(1, 2, 3)))
             }
             test("a predicate matches no item") {
+                // Note that we have added a predicate to allow the same items as the other tests in this context
                 val predicates = listOf(::isBiggerThan10, ::isNegative, ::isZero, ::isPositive)
                 check(items, predicates, listOf(listOf(), listOf(-1), listOf(0), listOf(1, 2, 3)))
             }
@@ -266,7 +267,6 @@ class PartitionTests : JUnit5Minutests {
             }
             context("a predicate matches no item") {
                 deriveFixture {
-                    // Note that we have added a predicate to allow the same items as the other tests
                     parentFixture.copy(
                         predicates = listOf(::isBiggerThan10, ::isNegative, ::isZero, ::isPositive)
                     )
