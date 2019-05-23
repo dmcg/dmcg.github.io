@@ -85,7 +85,8 @@ class MainActivity : AppCompatActivity() {
 
 This is what my friend Richard Care would describe as "monkey-see, monkey-do" code. In particular I have no real idea where `R.layout.activity_main` and `button` come from, except for some theory that code is being generated to reflect the contents of resource XML files. But no matter, because it works.
 
-![Here's the kaboom](assets/press-to-test-1.gif)
+<p align="center"><img alt="Here's the kaboom" src="assets/press-to-test-1.gif" height="480"/></p>
+
 
 ## Now For That Test
 
@@ -256,7 +257,7 @@ along with a really handy dump of the whole view hierarchy. Well, it isn't handy
 
 Luckily it doesn't take long to realise that the problem is that returning `true` from the touch listener is telling Android that we have handled the event, so it isn't processing the *up* to make a click. Return `false`, and the tests both pass. Not only that, but the app actually works!
 
-![Here's another kaboom](assets/press-to-test-2.gif)
+<p align="center"><img alt="Here's another kaboom" src="assets/press-to-test-2.gif" height="480"/></p>
 
 ## Tidy Up
 
