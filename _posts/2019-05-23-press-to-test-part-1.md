@@ -153,7 +153,7 @@ Hey that's not at all bad. Espresso seems well thought out, and although the `Th
 
 ## The Button Text
 
-The only thing that our app doesn't do (assuming you have a low extravaganza threshold) is change the button text. Before implementing that, I work out how to check the text in a test, and refactor the existing test a little.
+The only thing that our app doesn't do (assuming you have a low extravaganza-threshold) is change the button text. Before implementing that, I work out how to check the text in a test, and refactor the existing test a little.
 
 ```kotlin
 @RunWith(AndroidJUnit4::class)
@@ -192,7 +192,7 @@ private val snackBarMatcher = allOf(
 )
 ```
 
-Now we're fully into test-first mode, I go looking for how to [test touch down and touch up interactions in Espresso](// https://stackoverflow.com/questions/32010927/android-espresso-make-assertion-while-button-is-kept-pressed
+Now we're fully into test-first mode, I go looking for how to [test touch down and touch up interactions in Espresso](https://stackoverflow.com/questions/32010927/android-espresso-make-assertion-while-button-is-kept-pressed
 ). Copying and pasting the code from the answer into a [Finger object](https://github.com/dmcg/PressToTest/blob/7d4228fc1dc34a98a3994cd1056cdff9eca54ecb/app/src/androidTest/java/com/oneeeyedmen/presstotest/Finger.kt) let's me write
 
 ```kotlin
@@ -245,7 +245,7 @@ class MainActivity : AppCompatActivity() {
 }
 ```
 
-Build it, run the tests and get home in time for tea and medals. Except that the `button_message_changes_on_pressing` fails. I'm used to this though - knowing UI tests it's probably some timing issue. So I run the app in the emulator, and find that, in fact, our earth-shattering kaboom is missing.
+Build it, run the tests and get home in time for tea and medals. Except that the `button_message_changes_on_pressing` fails. I'm used to this though - knowing UI tests it's probably some timing issue. So I run the app in the emulator, and find that, in fact, our earth-shattering kaboom *is* missing.
 
 Running the test again shows that Espresso was trying to tell me that
 
