@@ -315,6 +315,6 @@ and we're done for the day.
 
 ## Wrap Up
 
-Running tests on the emulator is remarkably painless with Android Studio. Each one does take a couple of seconds though, so it would be nice to be able to test our logic as part of unit tests run in a nice fast Gradle test VM instance. In the next installment I'll take a look at that.
+Running tests on the emulator is remarkably painless with Android Studio. Each one does take a couple of seconds though, so it would be nice to be able to test our logic as part of unit tests run in a nice fast Gradle test VM instance. In the [next installment](press-to-test-part-2.html) I'll take a look at that.
 
 
