@@ -181,4 +181,4 @@ class InstrumentedAcceptanceTests : AcceptanceTests() {
 
 Today has been a lot more tiring than yesterday - lots of wallowing without any real idea if I can solve my problems. In the end though the result has been worth it - having the same tests running either in a local JVM or an emulator is a major productivity aid in real projects. The local JVM provides fast feedback when things are broken, while the instrumentation tests give confidence that app is actually in a state to ship.
 
-Next time, I think I'll probably look at true unit testing of our UI, breaking the dependency on Android.
+[Next time](press-to-test-part-3.html), I think I'll probably look at true unit testing of our UI, breaking the dependency on Android.
