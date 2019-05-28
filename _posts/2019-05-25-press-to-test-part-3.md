@@ -102,37 +102,50 @@ and yes, I did write it [test first](https://github.com/dmcg/PressToTest/blob/4a
 To be honest, this is probably overkill, but then it is an academic exercise, so I might be forgiven for stretching my coding legs a little. `waitForNo` is a bit suss, but is there to integrate with Espresso thus
 
 ```kotlin
+@RunWith(AndroidJUnit4::class)
 abstract class AcceptanceTests(private val waiter: Waiter) {
 
     @get:Rule
     val activityRule = ActivityTestRule(MainActivity::class.java)
 
+    val button = onView(withId(R.id.button))
+    val snackBar get() = onView(
+        allOf(
+            withId(android.support.design.R.id.snackbar_text),
+            withText("BOOM!")
+        )
+    )
+
     @Test
     fun button_message_changes_on_pressing() {
-        val button = onView(buttonMatcher)
-
-        button.check(isDisplayed(withText("PRESS TO TEST")))
+        button.check(matchesIsDisplayed(withText("PRESS TO TEST")))
 
         button.perform(Finger.pressAndHold())
-        button.check(isDisplayed(withText("RELEASE TO DETONATE")))
+        button.check(matchesIsDisplayed(withText("RELEASE TO DETONATE")))
 
         button.perform(Finger.release())
-        button.check(isDisplayed(withText("PRESS TO TEST")))
+        button.check(matchesIsDisplayed(withText("PRESS TO TEST")))
     }
 
     @Test
     fun clicking_button_shows_temporary_BOOM_message() {
+        snackBar.check(doesNotExist())
 
-        onView(snackBarMatcher).check(doesNotExist())
-
-        onView(buttonMatcher).perform(click())
-        onView(snackBarMatcher).check(isDisplayed())
+        button.perform(click())
+        snackBar.check(matchesIsDisplayed())
 
         waiter.waitForNo<AssertionFailedError>("Snackbar gone") {
-            onView(snackBarMatcher).check(doesNotExist())
+            snackBar.check(doesNotExist())
         }
     }
 }
+
+private fun matchesIsDisplayed(matcher: Matcher<View> = Matchers.any(View::class.java)) = matches(
+    allOf(
+        ViewMatchers.isDisplayed(),
+        matcher
+    )
+)
 ```
 
 In `androidTest` - we don't have to pander to Robolectric
