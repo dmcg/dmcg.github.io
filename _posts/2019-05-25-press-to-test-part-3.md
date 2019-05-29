@@ -3,7 +3,7 @@ title: Press to Test - Test Driven Development in Android Part 3
 layout: post
 ---
 
-This is Part 3 in a series documenting my experiences learning Android development in Kotlin.
+This is Part 3 in a series documenting my experiences learning Android development in Kotlin. The code is available to follow along on [GitHub](https://github.com/dmcg/PressToTest).
 
 In [Part 1](press-to-test-part-1.html) I got a simple UI toy up and running, with tests running via [Espresso](https://developer.android.com/training/testing/espresso) in an emulator.
 
@@ -168,5 +168,5 @@ There we have it, we can run the same tests on the emulator and locally, and the
 
 Engineering is the balance between getting things right and getting things done. The code is now a more 'right' in that it doesn't just sleep, but I wonder if `runMainLooperToNextTask` will result in the Robolectric scheduler getting out of sync with the time that we have waited for the condition to hold. Without an actual problem though - sufficient unto the day is the evil thereof.
 
-Next time I'll get back to trying to write some proper unit tests.
+[Next time](press-to-test-part-4.html) I'll get back to trying to write some proper unit tests.
 
