@@ -97,7 +97,7 @@ class ViewModel(
 }
 ```
 
-and use `DataBindingUril.setContentView` rather then `AppCompatActivity.setContentView` to wire up the databinding in `MainActivity`
+and use `DataBindingUtil.setContentView` rather then `AppCompatActivity.setContentView` to wire up the databinding in `MainActivity`
 
 ```kotlin
 class MainActivity : AppCompatActivity() {
