@@ -273,4 +273,4 @@ Philosophically I like that `ViewModel` is now self-contained and asks only to b
  
 ## Wrap Up
 
-This hasn't been a full day's work, but I'm going to stop this post here, as we now have complete acceptance and unit test coverage of the app, albeit hand-crafted. I'd still like to try out that Data Binding though, so I'll spend the rest of the day working through that codelab so that I can refactor my cobbling tomorrow.
+This hasn't been a full day's work, but I'm going to stop this post here, as we now have complete acceptance and unit test coverage of the app, albeit hand-crafted. I'd still like to try out that Data Binding though, so I'll spend the rest of the day working through that codelab so that I can refactor my cobbling [tomorrow](press-to-test-part-6.html).
