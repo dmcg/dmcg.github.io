@@ -1,6 +1,7 @@
 ---
 title: Press to Test - Test Driven Development in Android Part 6
 layout: post
+tags: [PressToTest, Testing, Android, Kotlin]
 ---
 
 This is Part 6 in a series documenting my experiences learning Android development in Kotlin. The code is available to follow along on [GitHub](https://github.com/dmcg/PressToTest).
@@ -260,7 +261,7 @@ class ViewModel(
         false
     }
 
-    val onClickListener = View.OnClickListener { onClick() }
+    val onClickListener = OnClickListener { onClick() }
 
     @VisibleForTesting
     internal fun onTouchAction(actionCode: Int) {

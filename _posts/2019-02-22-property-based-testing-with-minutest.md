@@ -1,6 +1,7 @@
 ---
 title: Property Based Testing With Minutest
 layout: post
+tags: [Kotlin, Minutest, Testing]
 ---
 This is the bonus episode of a mini-series on my new test library, [Minutest](https://github.com/dmcg/minutest).
 

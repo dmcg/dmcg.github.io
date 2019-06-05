@@ -1,6 +1,7 @@
 ---
 title: Test Driven to Specification with Minutest - Part 2
 layout: post
+tags: [Kotlin, Minutest, Testing]
 ---
 This is the second part of a mini-series on [Minutest](https://github.com/dmcg/minutest).
 

@@ -1,6 +1,7 @@
 ---
 title: Failure is not an Option - Functional Error Handling in Kotlin. Part 4 - Either v Exception
 layout: post
+tags: [Kotlin, Failure is not an Option]
 ---
 This is Part 4 in a series looking at functional error handling in Kotlin. The parts are
 

@@ -1,6 +1,7 @@
 ---
 title: Objects and Functions in Kotlin - Part 2
 layout: post
+tags: [Kotlin]
 ---
 
 In [Part 1](objects-and-functions-in-kotlin-part1.html) we started looking at the issue of encapsulating configuration information in object and functional styles. In this second part I'll continue the exploration before looking at expressing differences in behaviour.

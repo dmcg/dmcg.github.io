@@ -1,8 +1,7 @@
 ---
 title: Lessons Learned Writing Java and Kotlin Microbenchmarks
-
 layout: post
-
+tags: [Kotlin, Cost of Kotlin Language Features]
 ---
 
 I'm presenting a session, *The Cost of Kotlin Language Features*, at [KotlinConf](http://kotlinconf.com) in November. In the best scientific tradition I proposed the session because I was interested in the topic, knew little about it, and wanted to be forced to learn. That'll teach me!

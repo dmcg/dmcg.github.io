@@ -1,6 +1,7 @@
 ---
 title: Press to Test - Test Driven Development in Android Part 1
 layout: post
+tags: [PressToTest, Testing, Android, Kotlin]
 ---
 
 This is Part 1 in a series documenting my experiences learning Android development in Kotlin.

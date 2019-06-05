@@ -1,8 +1,7 @@
 ---
 title: The Cost of Kotlin Language Features - Preliminary Results Part 1 - Baselines
-
 layout: post
-
+tags: [Kotlin, Cost of Kotlin Language Features]
 ---
 Following on from my last post [Lessons Learned Writing Java and Kotlin Microbenchmarks](benchmarks.html), this post presents some preliminary results examining *The Cost of Kotlin Language Features* in preparation for my presentation at [KotlinConf](http://kotlinconf.com) in November. 
 

@@ -1,6 +1,7 @@
 ---
 title: Objects and Functions in Kotlin - Part 1
 layout: post
+tags: [Kotlin]
 ---
 
 

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: On Minimal
+tags: [Other]
 ---
 
 Despite not having seen him for perhaps 20 years, I continue to learn from [Paul Earwicker](https://www.youtube.com/user/paulearwicker).

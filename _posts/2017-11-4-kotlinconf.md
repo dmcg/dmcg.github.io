@@ -1,8 +1,7 @@
 ---
 title: KotlinConf
-
 layout: post
-
+tags: [Kotlin, Cost of Kotlin Language Features]
 ---
 My talk on the Cost of Kotlin Language Features at [KotlinConf](http://kotlinconf.com) went pretty well I think.
 

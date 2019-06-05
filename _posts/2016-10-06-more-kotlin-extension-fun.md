@@ -1,6 +1,7 @@
 ---
 layout: post
 title: More Kotlin Extension Fun
+tags: [Kotlin]
 ---
 
 This is a follow-up to my last post, [Extension Functions Can Be Utility Functions](/extension-functions-can-be-utility-functions.html). Here I'll look at more pros and cons of extension functions.

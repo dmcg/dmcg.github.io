@@ -1,8 +1,7 @@
 ---
 title: The Cost of Kotlin Language Features - Preliminary Results Part 5 - Properties
-
 layout: post
-
+tags: [Kotlin, Cost of Kotlin Language Features]
 ---
 This is Part 5 in a series examining *The Cost of Kotlin Language Features* in preparation for my presentation at [KotlinConf](http://kotlinconf.com) in November. The series consists of 
 

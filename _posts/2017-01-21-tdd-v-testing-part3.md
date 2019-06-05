@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Test Driven Development v Testing Part 3 - Approval Tests
+tags: [Java, Testing]
 ---
 
 This isn't the post I thought I was going to write for Part 3 [last week](/tdd-v-testing-part2.html), but it occurred to me that I could reasonably TDD FizzBuzz with [Approval Tests](http://approvaltests.com/) too, so here goes. 

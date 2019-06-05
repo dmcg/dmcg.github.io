@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Interface v Implementation
+tags: [Other]
 ---
 
 # Context

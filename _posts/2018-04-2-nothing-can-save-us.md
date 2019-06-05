@@ -1,6 +1,7 @@
 ---
 title: Nothing? can save us
 layout: post
+tags: [Kotlin]
 ---
 Imagine, if you can, that you need to capture data about your Customers
 

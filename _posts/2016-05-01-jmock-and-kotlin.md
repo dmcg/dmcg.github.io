@@ -1,6 +1,7 @@
 ---
 title: JMock and Kotlin
 layout: post
+tags: [Kotlin, Testing]
 ---
 
 [JMock](http://www.jmock.org/) may have lost the mocking war, but for the London crowd it's still the go-to mocking tool.

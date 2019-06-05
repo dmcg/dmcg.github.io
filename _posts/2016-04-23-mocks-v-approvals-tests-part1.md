@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Mocks v Approvals Tests Part 1
+tags: [Kotlin, Testing]
 ---
 
 Aka: Test Driven Design v Test Driven Development

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Extension Functions Can Be Utility Functions
+tags: [Kotlin]
 ---
 
 I enjoyed [Extension functions are not utility functions](https://medium.com/@dimsuz/extension-functions-are-not-utility-functions-74a5f9b53892#.o57pbn5k2)

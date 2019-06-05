@@ -1,6 +1,7 @@
 ---
 title: My New Test Model
 layout: post
+tags: [Kotlin, Minutest, Testing]
 ---
 
 ## Abstract
