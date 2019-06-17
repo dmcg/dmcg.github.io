@@ -169,6 +169,8 @@ fun sumLines(reader: BufferedReader, onError: (Exception) -> Int): Either<Except
 }
 ```
 
+Frankly this has depressed me a bit. Even when I'm trying to demonstrate how an Either type can help with error handling in Kotlin, I mess it up. I suppose that we're actually no worse off than Python or C# or almost any other language developers though - we do the best we can, sometimes we make mistakes, and when we find them we do our best to fix them.
+
 
 ## Dealing with Control Flow
 
