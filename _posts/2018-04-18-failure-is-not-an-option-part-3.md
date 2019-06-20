@@ -9,6 +9,9 @@ This is Part 3 in a series looking at functional error handling in Kotlin. The p
 * [Part 2 - Either](failure-is-not-an-option-part-2.html)
 * [Part 3 - Result and Fold](failure-is-not-an-option-part-3.html)
 * [Part 4 - Either v Exception](failure-is-not-an-option-part-4.html)
+* [Part 5 - Embracing Either](failure-is-not-an-option-part-5.html)
+* [Part 6 - What Should You Do While Waiting for the Standard Result Type](failure-is-not-an-option-part-6.html)
+* [Part 7 - Avoiding Failure](failure-is-not-an-option-part-7.html)
 
 In this third episode I’ll look at some of the pros and cons of using an Either type for functional error handling.
 

@@ -10,6 +10,8 @@ This is Part 5 in a series looking at functional error handling in Kotlin. The p
 * [Part 3 - Result and Fold](failure-is-not-an-option-part-3.html)
 * [Part 4 - Either v Exception](failure-is-not-an-option-part-4.html)
 * [Part 5 - Embracing Either](failure-is-not-an-option-part-5.html)
+* [Part 6 - What Should You Do While Waiting for the Standard Result Type](failure-is-not-an-option-part-6.html)
+* [Part 7 - Avoiding Failure](failure-is-not-an-option-part-7.html)
 
 In this episode we'll look at an case where the functional style has some definite benefits over using exceptions, and then go on to try to solve a problem that you will come across that is less easily finessed.
 
@@ -170,7 +172,6 @@ fun sumLines(reader: BufferedReader, onError: (Exception) -> Int): Either<Except
 ```
 
 Frankly this has depressed me a bit. Even when I'm trying to demonstrate how an Either type can help with error handling in Kotlin, I mess it up. I suppose that we're actually no worse off than Python or C# or almost any other language developers though - we do the best we can, sometimes we make mistakes, and when we find them we do our best to fix them.
-
 
 ## Dealing with Control Flow
 

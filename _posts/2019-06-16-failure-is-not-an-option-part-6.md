@@ -11,6 +11,7 @@ This is Part 6 in a series looking at functional error handling in Kotlin. The p
 * [Part 4 - Either v Exception](failure-is-not-an-option-part-4.html)
 * [Part 5 - Embracing Either](failure-is-not-an-option-part-5.html)
 * [Part 6 - What Should You Do While Waiting for the Standard Result Type](failure-is-not-an-option-part-6.html)
+* [Part 7 - Avoiding Failure](failure-is-not-an-option-part-7.html)
 
 It has been over a year since I wrote Part 5, and quite a lot has happened in that time. Arrow's [Try](https://arrow-kt.io/docs/arrow/core/try/) has matured but, as I read it, is now being deprecated as their approved way of representing errors. The Kotlin Standard Library has gained a [Result](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/index.html) type that we [aren't allowed to return](https://github.com/Kotlin/KEEP/blob/master/proposals/stdlib/result.md#limitations), and [Result4k](https://github.com/npryce/result4k) became useable by dint of renaming its types `Success` and `Failure` rather than `Ok` and `Err`.
 

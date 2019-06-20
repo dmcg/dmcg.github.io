@@ -10,6 +10,8 @@ This is Part 1 in a series looking at functional error handling in Kotlin. The p
 * [Part 3 - Result and Fold](failure-is-not-an-option-part-3.html)
 * [Part 4 - Either v Exception](failure-is-not-an-option-part-4.html)
 * [Part 5 - Embracing Either](failure-is-not-an-option-part-5.html)
+* [Part 6 - What Should You Do While Waiting for the Standard Result Type](failure-is-not-an-option-part-6.html)
+* [Part 7 - Avoiding Failure](failure-is-not-an-option-part-7.html)
 
 In this first post I'll look at why Kotlin did not follow Java's example and distinguish between checked and unchecked exceptions.
 
