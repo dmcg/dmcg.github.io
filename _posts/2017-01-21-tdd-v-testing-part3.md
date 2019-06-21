@@ -41,7 +41,7 @@ Expected :null
 Actual   :1
 ```
 
-which is telling us that nothing was expected (there is not yey any approved output for this test). A file `FizzBuzzApprovalsTests.test.actual` is created with the actual output, viz
+which is telling us that nothing was expected (there is not yet any approved output for this test). A file `FizzBuzzApprovalsTests.test.actual` is created with the actual output, viz
 
 ```
 1
@@ -75,7 +75,7 @@ Expected :1
 Actual   :1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31
 ```
 
-but it is what we want to we approve it, and run the tests again just to make sure they pass now.
+but it is what we want so we approve it, and run the tests again just to make sure they pass now.
 
 Now instead of writing another test we can just add to our implementation.
 
