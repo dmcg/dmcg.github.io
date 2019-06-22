@@ -7,8 +7,7 @@ This needs Jekyll installed - I did it with rbenv, bundler and much cursing.
 ```
 eval "$(rbenv init -)"
 
-  
-bundle exec jekyll serve
+./serve.sh
 ```
 
 # Publish
