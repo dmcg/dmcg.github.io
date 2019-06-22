@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Test Driven Development v Testing Part 2 - Theory Tests
-tags: [Java, Testing]
+tags: [Java, Testing, TDD v Testing]
 ---
 
 As promised at the end of [Part 1](/tdd-v-testing-part1.html), I'll now go through the steps of TDDing FizzBuzz with JUnit theories, inspired by Dominic Fox's excellent post titled [How to TDD FizzBuzz with JUnit Theories](https://opencredo.com/tdd-fizzbuzz-junit-theories/). My reasons for doing this are

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Test Driven Development v Testing Part 1 - Example Tests
-tags: [Java, Testing]
+tags: [Java, Testing, TDD v Testing]
 ---
 
 Dominic Fox wrote a very good post recently titled [How to TDD FizzBuzz with JUnit Theories](https://opencredo.com/tdd-fizzbuzz-junit-theories/). In it he wrote *"For a long time I was of the opinion that a) FizzBuzz couldn’t be meaningfully TDD’d, and b) this illustrated a common pitfall with TDD."*
