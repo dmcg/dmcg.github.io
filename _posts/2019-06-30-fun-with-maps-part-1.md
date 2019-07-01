@@ -450,7 +450,7 @@ fun filterFile(file: File, propertyName: String, propertyValue: String) = file.u
 }
 ```
 
-This technique of taking a map and tagging it with a type-erased but reconstructable marker, and synthesising properties based on the marker type, is a nice way to add gradual typing to a map-based data model. What if we want to go the other way round - represent a statically-typed model as a map? We'll look at that in the next episode.
+This technique of taking a map and tagging it with a type-erased but reconstructable marker, and synthesising properties based on the marker type, is a nice way to add gradual typing to a map-based data model. What if we want to go the other way round - represent a statically-typed model as a map? We'll look at that in the [next episode](fun-with-maps-part-2.html).
 
 Thanks to [Nat Pryce](http://natpryce.com), [Rob Fletcher](https://twitter.com/_fletchr) and [Robert Stoll](http://tutteli.ch) for providing feedback on this article.
 
