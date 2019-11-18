@@ -136,29 +136,3 @@ class NonEmptyList<T>(private val wrapped: List<T>) :
 ```
 
 
-That's all you need ensure that calling `first()`, `last()`, `reduce()` etc on a `NonEmptyList` parameter can't fail.
-
-Note that this technique does not give compile-time checking that an integer is not 0, or that an input list is not empty. What it does do is to push the error handling up the call stack so that lower functions do not have to consider failure, which in turn will allow more intermediate functions to be total and error-handling-free. Whilst you have to define new types, these not only aid totality but also make our code more expressive. The major downside is the extra heap allocation required to hold the wrapper object, and the occasional dereferencing of the wrapped value.
-
-## Panacea?
-
-Of course this cannot solve all of our partial function problems.
-
-Often a function is partial for a specific combination of its arguments - array dereferencing or regular expression substitution for example. In these cases we might gain advantages by moving the operation up the call stack, or it might be that that these make the program less clear and so less safe.
-
-We sometimes see functions that are only total for other combinations of more than two arguments - a string which contains the characters of the two other integer arguments maybe. Often these are code smells and should be addressed as such - is this grouping a thing? If so we can encapsulate the related parameters as an object that we can validate on construction and pass down, with the now-total operation a method on that object.
-
-Another complication is a value that has different validity for different functions. One function might be happy with a `NonBlankString`, another needs the same value to be an `ALL_UPPERCASE_STRING`. In these cases we may be able to combine the types into a single validated type, but it certainly adds complexity which may or may not be worth the cost.
-
-The biggest challenge is perhaps functions where validating totality is expensive and the function is only called in a subset of possible interactions. If the value of complex regular expression substitution is only actually required once every other Tuesday, you may not want to pull its evaluation up the call stack so that it is invoked on every of 100,000 requests per day. In these cases discretion is required - functions are *allowed* to be partial after all - we're just trying to reduce the number that are.
-
-## On the Other Hand
-
-It is *possible* to program in an environment where (almost) every function is partial - this is the case in a dynamic language. Every parameter could have any type, and is subject to runtime failure (usually with an exception) when we discover that its actual type does not meet our expectations. Programming in these languages is a different process than when we have static types. For myself, I like the ability to reason about my code that static types give me, and feel that I may as well double-down and apply that to errors as well.
-
-## Conclusion
-
-I have been seduced by the idea that because some parts of my code must deal with errors, all parts might as well deal with errors. Judging by other code that I read, I don’t think I’m alone. Converting low level partial functions to total functions can propagate totality through our code, significantly reducing the amount of error handling code that we have to write.
-
-Thanks to [Nat Pryce](http://natpryce.com) for reviewing this. Nat and I have proposed a session based on our experiences in this area for KotlinConf 2019.
-

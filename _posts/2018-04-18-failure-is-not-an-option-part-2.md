@@ -138,7 +138,8 @@ fun BufferedReader.eitherReadLine(): Either<String, String> =
     }
 
 
-fun doubleNextLine(reader: BufferedReader): Either<String, Int> = reader.eitherReadLine().flatMap { doubleString(it) }
+fun doubleNextLine(reader: BufferedReader): Either<String, Int> =
+    reader.eitherReadLine().flatMap { doubleString(it) }
 ```
 
 This code will return a Left with the failure if `eitherReadLine` fails, otherwise it will return the result of `doubleString`, which may itself be either a Left for failure or a Right with the final int result. In this way a chain of map and or flatMap calls acts like a series of expressions which might throw an exception - the first failure aborts the rest of the computation.

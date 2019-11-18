@@ -98,7 +98,12 @@ fun openFile(name: String): Either<Exception, InputStream> =
 
 which is a shame, because despite all this functional cleverness we seem to be back to the de-facto situation of  - here is a function that can either succeed, or fail with pretty much any Throwable.
 
-Actually it isn't quite that bleak. We've divided our error handling into Errors, which we probably can't do anything about at any level, and are allowed to propagate as Throwables, and Exceptions, that are returned in the Either, albeit with their actual type usually lost. Furthermore, reviewing my current code-base's use of Either for error handling, I find that we only return Either for functions that we reasonably *expect* to fail for one of a few reasons
+Actually it isn't quite that bleak. We've divided our error handling into
+
+* Errors, which we probably can't do anything about at any level, and are allowed to propagate as Throwables, and
+* Exceptions, that are returned in the Either, albeit with their actual type usually lost.
+
+Furthermore, reviewing my current code-base's use of Either for error handling, I find that we only return Either for functions that we reasonably *expect* to fail for one of a few reasons
 
 1. The function is only defined for a subset of its inputs (partial functions like parseInt).
 2. External systems don't behave as we expect (usually expressed as IOException).

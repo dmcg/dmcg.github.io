@@ -81,7 +81,24 @@ when (result) {
 ```
 
 The formalisation of this on Either is called `fold`. It takes two functions and returns the result of calling the first if the Either is Left, the second if it is Right.
+
+```kotlin
+inline fun <L, R, T> Either<L, R>.fold(fl: (L) -> T, fr: (R) -> T): T =
+    when (this) {
+        is Right -> fr(this.r)
+        is Left -> fl(this.l)
+    }
+```
+
 This lets us actually do something on the outside of our system
+
+```kotlin
+parseInt(readLine() ?: "").fold(
+    fr = { int -> println("Your number was $int") },
+    fl = { exception -> println("I couldn't read your number because $exception") }
+)
+```
+
 Again you have to squint quite hard to see the similarity between Either.fold and List.fold, but it turns out that functional programmers are so good at squinting that they have given it a special name - catamorphism.
 
 Personally I hate fold. Sure it unwraps the values for you, but putting lambdas inside a function invocation is ugly, and you pretty much always need to name the arguments because you want the success case first, but that doesn't happen naturally when success is Right. I'll often fall back on the raw `when` formulation because it has the braces in the right place and reads naturally. I suppose the nastiness of fold at least encourages the user to only do it as a last resort, which is as it should be.
