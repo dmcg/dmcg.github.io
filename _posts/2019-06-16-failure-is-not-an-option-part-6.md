@@ -28,7 +28,7 @@ data class Failure(val exception: Exception) : Result<Nothing>()
 
 The refactoring took less than a day and introduced no errors (that I found ;-). This is good news, because it is an existence proof that, at least for my style of programming, you could pick one result type for your codebase and change your mind with little pain.
 
-This of course only applies if you can change the clients of your API. Library writers I think should still just throw exceptions unless they have a compelling reason not to.
+This of course only applies if you can change the clients of your API. Library writers should probably still just throw exceptions unless they have a compelling reason not to, or else define their own minimal result type.
 
 Based on talking to Andrey Breslav at KotlinConf I suspect that Jetbrains are just being ultra-cautious, and that restrictions on the use of the standard `Result` will be removed as they gain confidence in it. It's worth noting though that the implementation is an inline class, not an algebraic data type. What this means in practice is that you cannot switch on the type. Instead of writing
 

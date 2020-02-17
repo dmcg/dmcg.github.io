@@ -59,8 +59,13 @@ fun sumLines(reader: BufferedReader): Long {
     val ints: Sequence<Either<Exception, Int>> = reader.lineSequence().map(::parseInt)
     return ints.fold(0L) { acc, intResult ->
         intResult.fold(
-            { exception -> System.err.println(exception.message); acc },
-            { result -> acc + result }
+            { exception ->
+                System.err.println(exception.message)
+                acc
+            },
+            { result ->
+                acc + result
+            }
         )
     }
 }
@@ -101,8 +106,8 @@ fun sumLines(reader: BufferedReader): Long {
     val ints: Sequence<Int> = reader.lineSequence()
         .map(::parseInt)
         .map {
-            it.orElse {
-                exception -> System.err.println(exception.message)
+            it.orElse { exception ->
+                System.err.println(exception.message)
                 0
             }
         }
@@ -123,7 +128,12 @@ leaving us with the the still-a-bit-ugly
 ```kotlin
 fun sumLines(reader: BufferedReader): Long {
     val ints: Sequence<Either<Exception, Int>> = reader.lineSequence().map(::parseInt)
-    return ints.eachOrElse( { exception -> System.err.println(exception) ; 0 }).fold(0L, Long::plus)
+    return ints
+        .eachOrElse { exception ->
+            System.err.println(exception)
+            0
+        }
+        .fold(0L, Long::plus)
 }
 ```
 
@@ -131,7 +141,10 @@ Now though we have at least successfully separated what to do in the case of an 
 
 ```kotlin
 fun sumLines(reader: BufferedReader, onError: (Exception) -> Int): Long =
-    reader.lineSequence().map(::parseInt).eachOrElse(onError).fold(0L, Long::plus)
+    reader.lineSequence()
+        .map(::parseInt)
+        .eachOrElse(onError)
+        .fold(0L, Long::plus)
 
 fun sumLines(reader: BufferedReader): Long =
     sumLines(reader) { exception ->
@@ -163,7 +176,7 @@ I'll give you a couple of minutes.
 
 
 
-What I'd failed to spot is that, if this were Java, calls to any methods on a Reader would declare an IOException, and we'd be forced to consider that reading every line might fail. Here the flow of control is inverted, so that the line sequence pokes strings at our code, but even so, every time it does the file could have been deleted or the network gone away. So map can still throw an IOException that we are not revealing by returning Either<Exception, Long>. Our function should be declared as
+What I'd failed to spot is that, if this were Java, calls to any methods on a Reader would declare an IOException, and we'd be forced to consider that reading every line might fail. Here the flow of control is inverted, so that the line sequence pokes strings at our code, but even so, every time it does the file could have been deleted or the WiFi could have gone down. So map can still throw an IOException that we are not revealing by returning Either<Exception, Long>. Our function should be declared as
 
 ```kotlin
 fun sumLines(reader: BufferedReader, onError: (Exception) -> Int): Either<Exception, Long> = resultOf {
