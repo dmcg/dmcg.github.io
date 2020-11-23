@@ -7,7 +7,7 @@ tags: [Kotlin, Failure is not an Option]
 It’s been a long time since my last post.
 This is largely because my writing efforts have been directed towards a book!
 Nat Pryce (co-author of the excellent [GOOS](http://www.growing-object-oriented-software.com/)) and I are hard at work on _Java to Kotlin, A Refactoring Guidebook_, due to be published in 2021 by O’Reilly.
-You can read our work in progress on [O'Reilly Online Learning](https://www.oreilly.com/library/view/java-to-kotlin/).
+You can read our work in progress on [O'Reilly Online Learning](https://learning.oreilly.com/library/view/java-to-kotlin/9781492082262/).
 
 Nat and I are both fans of [tiny-types](https://darrenhobbs.com/2007/04/11/tiny-types/).
 The basic idea here is to have a separate type for individual domain concepts rather than just using (usually) Strings. So we might define `GivenName` and `FamilyName` types so that a `Customer` can be
@@ -71,7 +71,7 @@ Kotlin [Inline Classes](https://kotlinlang.org/docs/reference/inline-classes.htm
 inline class GivenName(val value: String)
 ```
 
-In most circumstances the compiler arranges for instances of inline classes be passed around as just the single contained value, so that we don't have the overhead of creating an extra wrapper instance.
+In most circumstances the compiler arranges for instances of inline classes to be passed around as just the single contained value, so that we don't have the overhead of creating an extra wrapper instance.
 This should be perfect for tiny types.
 
 There's one major problem though, we can't easily validate inline classes.
@@ -174,4 +174,6 @@ fun cardNumberOf(s: String): CardNumber? =
 As I've said, this is a subversion of the inline class initialisation rules and won't be safe if you accept calls in from Java.
 I'm also not sure how marshalling technologies like Jackson or kotlinx.serialisation will interact with the technique.
 For pure Kotlin codebases though I think it's worth a try, as tiny types can significantly improve the readability and safety of our code.
+
+Come back soon, because I'll present a tiny tiny types framework using phantom types to reduce the amount of boilerplate code required.
 
