@@ -1,7 +1,7 @@
-
 ---
 title: Inline Tiny Types With Validation
 layout: post
+tags: [Kotlin, Failure is not an Option]
 ---
 
 It’s been a long time since my last post.
@@ -47,7 +47,7 @@ because `isNotBlank` is helpfully defined on `CharSequence` not `String`.
 On the subject of non-blank-ness, it would be really helpful if we were prevented from creating a blank `CustomerId`.
 That would go a long way to avoiding the errors we get when functions are partial - only defined on some of their inputs (see [Failure is not an Option, Part 7 - Avoiding Failure](failure-is-not-an-option-part-7.html)).
 
-We can check the value in an `init` block.
+We can prevent the creation of an invalid `CustomerId` by checking the value in an `init` block.
 
 ```kotlin
 data class CustomerId(val value: String): CharSequence by value {
@@ -95,12 +95,9 @@ If you have a pure-Kotlin codebase, or just only ever call down into Java rather
 It would be really nice to use inline classes to implement validated tiny types.
 Can we find a way to make this work?
 
-What we want to do is to either:
+What we need to do is either make sure that calling `CustomerId("")` throws an exception, or prevent callers from calling the `CustomerId(val value: String)` at all, instead making them go through some factory which can perform pre-validation.
 
-1. Make sure that calling `CustomerId("")` throws an exception - we can't do this because we can't have an init block.
-2. Prevent callers from calling the `CustomerId(val value: String)` at all, instead making them go through some factory which can perform pre-validation.
-
-There is a sneaky way to achieve the second, at least for pure Kotlin code -
+We can't throw an exception from the constructor because we can't have an init block, but there is a sneaky way to achieve the second, at least for pure Kotlin code -
 make the value another inline class.
 
 ```kotlin
@@ -176,5 +173,5 @@ fun cardNumberOf(s: String): CardNumber? =
 
 As I've said, this is a subversion of the inline class initialisation rules and won't be safe if you accept calls in from Java.
 I'm also not sure how marshalling technologies like Jackson or kotlinx.serialisation will interact with the technique.
-For pure Kotlin codebases though it's worth a try, as tiny types can significantly improve your code.
+For pure Kotlin codebases though I think it's worth a try, as tiny types can significantly improve the readability and safety of our code.
 
