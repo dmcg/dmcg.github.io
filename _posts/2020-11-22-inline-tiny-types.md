@@ -177,3 +177,5 @@ For pure Kotlin codebases though I think it's worth a try, as tiny types can sig
 
 Come back soon, because I'll present a tiny tiny types framework using phantom types to reduce the amount of boilerplate code required.
 
+Postscript - there is some discussion of other ways to achieve validation on the [reddit discussion](https://www.reddit.com/r/Kotlin/comments/jzevz4/inline_tiny_types_with_validation/).
+
